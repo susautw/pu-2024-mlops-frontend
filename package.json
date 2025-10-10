@@ -20,7 +20,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@primeuix/themes": "^1.2.5",
     "pinia": "^3.0.3",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.4.1",
     "vue": "^3.5.22",
     "vue-router": "^4.5.1"
   },
@@ -47,6 +50,7 @@
     "oxlint": "~1.11.0",
     "prettier": "3.6.2",
     "typescript": "~5.9.0",
+    "unocss": "^66.5.2",
     "vite": "^7.1.7",
     "vite-plugin-vue-devtools": "^8.0.2",
     "vitest": "^3.2.4",
