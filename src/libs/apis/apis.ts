@@ -1,4 +1,3 @@
-import type { input } from '@primeuix/themes/aura/iftalabel'
 import type { TrainingStatus, TrainingTask, WorkerSummary } from './models'
 
 export async function getWorkersSummary(): Promise<WorkerSummary[]> {

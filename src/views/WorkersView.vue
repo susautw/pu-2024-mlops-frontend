@@ -1,4 +1,7 @@
 <template>
-  WorkersView
-  <RouterLink to="/tasks"> Tasks </RouterLink>
+  <ListContainer />
 </template>
+
+<script setup lang="ts">
+import ListContainer from '@/components/ListContainer.vue'
+</script>

@@ -1,1 +1,3 @@
-<template>CreateTaskView</template>
+<template>
+  <div>CreateTaskView</div>
+</template>

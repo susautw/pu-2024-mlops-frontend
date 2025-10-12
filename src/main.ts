@@ -1,6 +1,7 @@
 import '@unocss/reset/tailwind-compat.css'
 import 'virtual:uno.css'
 import 'primeicons/primeicons.css'
+import 'overlayscrollbars/overlayscrollbars.css'
 import '@/assets/main.css'
 
 import { createApp } from 'vue'
