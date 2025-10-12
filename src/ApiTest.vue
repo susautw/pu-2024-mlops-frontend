@@ -5,9 +5,6 @@ import {
   deleteTrainingTaskById,
   getTrainingStatusById,
   getTrainingTaskById,
-  getTrainingTasks,
-  getWorkersSummary,
-  getWorkerSummaryById,
   startTrainingTaskById,
   stopTrainingTaskById,
 } from './libs/apis/apis'

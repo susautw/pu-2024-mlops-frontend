@@ -1,1 +1,3 @@
-<template>WorkerDetailView</template>
+<template>
+  <div>WorkerDetailView</div>
+</template>

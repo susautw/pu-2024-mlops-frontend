@@ -1,1 +1,3 @@
-<template>TaskDetailView</template>
+<template>
+  <div>TaskDetailView</div>
+</template>
