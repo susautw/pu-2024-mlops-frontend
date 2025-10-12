@@ -5,7 +5,7 @@
     </div>
     <span :class="value < 1 ? 'text-white' : 'text-green'">{{
       (value * 100).toFixed(2) + '%'
-      }}</span>
+    }}</span>
   </div>
 </template>
 
