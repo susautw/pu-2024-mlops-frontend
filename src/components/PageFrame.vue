@@ -1,3 +1,17 @@
+<script lang="ts">
+/**
+ * PageFrame - A container component that provides a consistent layout for pages.
+ * This component includes a navigation bar with links to "Tasks" and "Workers" views,
+ * and a scrollable area for displaying the main content.
+ *
+ * Slots:
+ * - Default slot: The main content to be displayed within the scrollable area.
+ * - Named slot "actions": Additional action buttons or elements to be displayed next to the navigation
+ */
+export default {
+  name: 'PageFrame',
+}
+</script>
 <template>
   <div class="flex flex-col gap-2 px-4 py-2 min-w-50rem">
     <div class="flex gap-2">
@@ -26,20 +40,6 @@
     </OverlayScrollbarsComponent>
   </div>
 </template>
-<script lang="ts">
-/**
- * ListContainer - A container component for displaying lists with navigation and scrollable content.
- * This component includes a navigation bar with links to "Tasks" and "Workers" views,
- * and a scrollable area for displaying the main content.
- *
- * Slots:
- * - Default slot: The main content to be displayed within the scrollable area.
- * - Named slot "actions": Additional action buttons or elements to be displayed next to the navigation
- */
-export default {
-  name: 'ListContainer',
-}
-</script>
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue'

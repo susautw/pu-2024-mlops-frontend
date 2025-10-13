@@ -1,5 +1,5 @@
 <template>
-  <ListContainer>
+  <PageFrame>
     <template #actions>
       <div class="grow flex gap-2 items-center">
         <button
@@ -14,11 +14,11 @@
       </div>
     </template>
     <template #default> Tasks </template>
-  </ListContainer>
+  </PageFrame>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import ListContainer from '@/components/ListContainer.vue'
+import PageFrame from '@/components/PageFrame.vue'
 import SearchBar from '@/components/SearchBar.vue'
 
 const search = ref('')

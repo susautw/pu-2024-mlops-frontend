@@ -1,3 +1,16 @@
+<script lang="ts">
+/**
+ * ProgressBar - A simple progress bar component that visually represents a progress value.
+ * The progress bar displays a filled portion based on the provided value (between 0 and 1)
+ * and shows the percentage as text next to it.
+ *
+ * Props:
+ * - value (number): A number between 0 and 1 representing the progress to be displayed.
+ */
+export default {
+  name: 'ProgressBar',
+}
+</script>
 <template>
   <div class="progress flex gap-1 items-center">
     <div class="progress-bar grow bg-white h-1 rounded-8 overflow-clip min-w-5rem">

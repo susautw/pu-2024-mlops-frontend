@@ -1,7 +1,7 @@
 <template>
-  <ListContainer />
+  <PageFrame />
 </template>
 
 <script setup lang="ts">
-import ListContainer from '@/components/ListContainer.vue'
+import PageFrame from '@/components/PageFrame.vue'
 </script>
