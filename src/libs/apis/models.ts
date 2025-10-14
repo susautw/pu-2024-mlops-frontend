@@ -1,5 +1,3 @@
-import type { StepItemClasses } from 'primevue'
-
 export type WorkerSummary = {
   id: string
   task_type: string
