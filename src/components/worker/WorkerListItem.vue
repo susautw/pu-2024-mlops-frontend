@@ -7,9 +7,9 @@
 export default {}
 </script>
 <template>
-  <div class="flex py-2 px-4 gap-8 b-1 b-white/20 hover:bg-white/40">
-    <span class="font-bold">{{ item.id }}</span>
-    <span>
+  <div class="flex py-2 px-4 gap-8 b-1 b-white/20 hover:bg-white/21">
+    <span class="font-bold w-50 overflow-clip text-ellipsis whitespace-nowrap">{{ item.id }}</span>
+    <span class="w-50 overflow-clip text-ellipsis whitespace-nowrap">
       {{ item.task_type }}
       <sub>{{ item.version }}</sub>
     </span>

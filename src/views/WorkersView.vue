@@ -3,18 +3,19 @@
     <template #actions>
       <div class="grow flex gap-2 items-center">
         <div class="grow" />
-        <button
-          class="pi pi-refresh p-2 bg-white/20 hover:bg-blue active:bg-blue/80 rounded-2 transition-colors-150"
-        />
+        <IconButton class="pi-refresh" />
       </div>
     </template>
     <template #default>
-      <WorkerListItem :item="testItem" />
+      <div>
+        <WorkerListItem :item="testItem" />
+      </div>
     </template>
   </PageFrame>
 </template>
 
 <script setup lang="ts">
+import IconButton from '@/components/IconButton.vue'
 import PageFrame from '@/components/PageFrame.vue'
 import WorkerListItem from '@/components/worker/WorkerListItem.vue'
 import type { WorkerSummary } from '@/libs/apis/models'
