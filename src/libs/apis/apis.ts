@@ -1,16 +1,16 @@
 import type { TrainingStatus, TrainingTask, WorkerSummary } from './models'
 
 export async function getWorkersSummary(): Promise<WorkerSummary[]> {
-  const response = await fetch(`api/v1/workers/summary`)
+  const response = await fetch(`/api/v1/workers/summary`)
   if (!response.ok) {
     throw new Error(`Response status: ${response.status}`)
   }
   const data = await response.json()
-  return (data.workers as any[]).map(toWorkerSummary)
+  return (data.workers as object[]).map(toWorkerSummary)
 }
 
 export async function getWorkerSummaryById(id: string): Promise<WorkerSummary> {
-  const response = await fetch(`api/v1/workers/${id}/summary`)
+  const response = await fetch(`/api/v1/workers/${id}/summary`)
   if (!response.ok) {
     throw new Error(`Response status: ${response.status}`)
   }
@@ -19,16 +19,16 @@ export async function getWorkerSummaryById(id: string): Promise<WorkerSummary> {
 }
 
 export async function getTrainingTasks(): Promise<TrainingTask[]> {
-  const response = await fetch(`api/v1/training-tasks`)
+  const response = await fetch(`/api/v1/training-tasks`)
   if (!response.ok) {
     throw new Error(`Response status: ${response.status}`)
   }
   const data = await response.json()
-  return (data as any[]).map(toTrainingTask)
+  return (data as object[]).map(toTrainingTask)
 }
 
 export async function getTrainingTaskById(id: string): Promise<TrainingTask> {
-  const response = await fetch(`api/v1/training-tasks/${id}`)
+  const response = await fetch(`/api/v1/training-tasks/${id}`)
   if (!response.ok) {
     throw new Error(`Response status: ${response.status}`)
   }
@@ -37,7 +37,7 @@ export async function getTrainingTaskById(id: string): Promise<TrainingTask> {
 }
 
 export async function getTrainingStatusById(id: string): Promise<TrainingStatus> {
-  const response = await fetch(`api/v1/training-tasks/${id}/status`)
+  const response = await fetch(`/api/v1/training-tasks/${id}/status`)
   if (!response.ok) {
     throw new Error(`Response status: ${response.status}`)
   }
@@ -46,14 +46,14 @@ export async function getTrainingStatusById(id: string): Promise<TrainingStatus>
 }
 
 export function getTaskDownloadUrl(id: string): string {
-  return `api/v1/training-tasks/${id}/artifacts`
+  return `/api/v1/training-tasks/${id}/artifacts`
 }
 export type StartTrainingTaskResponse = {
   task_id: string
   worker: WorkerSummary
 }
 export async function startTrainingTaskById(id: string): Promise<StartTrainingTaskResponse> {
-  const response = await fetch(`api/v1/training-tasks/${id}/start`, { method: 'POST' })
+  const response = await fetch(`/api/v1/training-tasks/${id}/start`, { method: 'POST' })
   if (!response.ok) {
     throw new Error(`Response status: ${response.status}`)
   }
@@ -67,7 +67,7 @@ export type StopTrainingTaskResponse = {
   task_id: string
 }
 export async function stopTrainingTaskById(id: string): Promise<StopTrainingTaskResponse> {
-  const response = await fetch(`api/v1/training-tasks/${id}/pause`, { method: 'POST' })
+  const response = await fetch(`/api/v1/training-tasks/${id}/pause`, { method: 'POST' })
   if (!response.ok) {
     throw new Error(`Response status: ${response.status}`)
   }
@@ -78,7 +78,7 @@ export async function stopTrainingTaskById(id: string): Promise<StopTrainingTask
 }
 
 export async function deleteTrainingTaskById(id: string): Promise<void> {
-  const response = await fetch(`api/v1/training-tasks/${id}`, { method: 'DELETE' })
+  const response = await fetch(`/api/v1/training-tasks/${id}`, { method: 'DELETE' })
   if (!response.ok) {
     throw new Error(`Response status: ${response.status}`)
   }
@@ -102,7 +102,7 @@ export async function createTrainingTask(options: CreateTaskOptions): Promise<Tr
   }
   formData.append('input_dir', options.input_dir, options.input_dir.name)
 
-  const response = await fetch(`api/v1/training-tasks`, { method: 'POST', body: formData })
+  const response = await fetch(`/api/v1/training-tasks`, { method: 'POST', body: formData })
   if (!response.ok) {
     throw new Error(`Response status: ${response.status}`)
   }
