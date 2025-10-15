@@ -15,7 +15,10 @@ export default {
 <template>
   <div class="flex flex-col gap-2 px-4 py-2 min-w-50rem">
     <div class="flex gap-2">
-      <nav class="flex items-center gap-2 b-1 b-white/40 self-start text-lg rounded-1 bg-dark-3">
+      <nav
+        v-if="!props.noNav"
+        class="flex items-center gap-2 b-1 b-white/40 self-start text-lg rounded-1 bg-dark-3"
+      >
         <RouterLink
           to="/tasks"
           class="px-2 py-1 rounded hover:bg-dark-light font-bold"
@@ -43,6 +46,10 @@ export default {
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue'
+
+const props = defineProps<{
+  noNav?: boolean
+}>()
 
 const router = useRouter()
 

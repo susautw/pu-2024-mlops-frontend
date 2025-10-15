@@ -22,7 +22,12 @@
           No workers found.
         </div>
         <template v-if="!loading && workers.length > 0">
-          <WorkerListItem v-for="worker in workers" :key="worker.id" :item="worker" />
+          <WorkerListItem
+            v-for="worker in workers"
+            :key="worker.id"
+            :item="worker"
+            @click="handleWorkerItemClick(worker)"
+          />
         </template>
       </div>
     </template>
@@ -37,6 +42,9 @@ import { getWorkersSummary } from '@/libs/apis/apis'
 import type { WorkerSummary } from '@/libs/apis/models'
 import { delay } from '@/libs/utils'
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const loading = ref(true)
 const workers = ref<WorkerSummary[]>([])
@@ -48,6 +56,11 @@ async function loadWorkers() {
   loading.value = false
   delay(500)
   workers.value = remoteWorkers
+}
+
+function handleWorkerItemClick(worker: WorkerSummary) {
+  // Navigate to worker detail view
+  router.push({ name: 'worker-detail', params: { id: worker.id } })
 }
 
 onMounted(async () => {
