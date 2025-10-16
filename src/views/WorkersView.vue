@@ -3,7 +3,7 @@
     <template #actions>
       <div class="grow flex gap-2 items-center">
         <div class="grow" />
-        <IconButton class="pi-refresh" @click="loadWorkers" />
+        <IconButton icon="pi-refresh" @click="loadWorkers" />
       </div>
     </template>
     <template #default>

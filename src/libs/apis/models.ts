@@ -26,3 +26,11 @@ export type TrainingStatus = {
   is_completed: boolean
   updated_at: Date
 }
+
+export enum ReservedTaskPhases {
+  ASSGINED = 'reserved.assigned',
+  PAUSED = 'reserved.paused',
+  CREATED = 'reserved.created',
+  COMPLETED = 'reserved.completed',
+  FAILED = 'reserved.failed',
+}

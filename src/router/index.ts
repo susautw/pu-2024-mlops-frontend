@@ -4,18 +4,23 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', redirect: '/tasks' },
-    { path: '/tasks', component: TasksView },
+    { path: '/tasks', name: 'tasks', component: TasksView },
     {
-      path: '/tasks/detail',
+      path: '/tasks/:id/detail',
+      name: 'task-detail',
       component: () => import('@/views/TaskDetailView.vue'),
     },
-    { path: '/workers', component: () => import('@/views/WorkersView.vue') },
+    { path: '/workers', name: 'workers', component: () => import('@/views/WorkersView.vue') },
     {
       path: '/workers/:id/detail',
       name: 'worker-detail',
       component: () => import('@/views/WorkerDetailView.vue'),
     },
-    { path: '/tasks/create', component: () => import('@/views/CreateTaskView.vue') },
+    {
+      path: '/tasks/create',
+      name: 'task-create',
+      component: () => import('@/views/CreateTaskView.vue'),
+    },
   ],
 })
 

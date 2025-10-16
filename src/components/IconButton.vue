@@ -8,20 +8,26 @@
 export default {}
 </script>
 <template>
-  <button :class="iconButtonStyles({ variant: props.variant, size: props.size })">
-    <slot />
+  <button
+    :class="[
+      iconButtonStyles({ variant: props.variant, size: props.size }),
+      { 'cursor-not-allowed opacity-50': props.disabled },
+    ]"
+    :disabled="props.disabled"
+  >
+    <div class="pi" :class="icon"><slot /></div>
   </button>
 </template>
 <script lang="ts" setup>
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 
-const iconButtonStyles = cva('pi p-2 rounded-2 transition-colors-150', {
+const iconButtonStyles = cva('p-2 rounded-2 transition-colors-150 flex', {
   variants: {
     variant: {
-      primary: 'bg-blue hover:bg-blue/90 active:bg-blue/80 text-white',
-      secondary: 'bg-white/20 hover:bg-blue active:bg-blue/80 text-white',
-      danger: 'bg-red hover:bg-red active:bg-red/80 text-white',
+      primary: 'bg-blue enabled:(hover:bg-blue/80 active:!bg-blue/60) text-white',
+      secondary: 'bg-white/20 enabled:(hover:bg-blue active:!bg-blue/80) text-white',
+      danger: 'bg-red enabled:(hover:bg-red/80 active:!bg-red/60) text-white',
     },
     size: {
       sm: '!text-4',
@@ -38,7 +44,9 @@ const iconButtonStyles = cva('pi p-2 rounded-2 transition-colors-150', {
 type IconButtonProps = VariantProps<typeof iconButtonStyles>
 
 const props = defineProps<{
+  icon: string
   variant?: IconButtonProps['variant']
   size?: IconButtonProps['size']
+  disabled?: boolean
 }>()
 </script>
