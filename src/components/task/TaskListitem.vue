@@ -1,13 +1,8 @@
 <script lang="ts">
-
-
-
-
-
 export default {}
 </script>
 <template>
- <div
+  <div
     class="flex py-2 px-4 gap-8 b-1 b-white/20 hover:bg-white/21 cursor-pointer active:bg-white/22 select-none"
   >
     <span
@@ -17,11 +12,12 @@ export default {}
         showDelay: 700,
         hideDelay: 0,
       }"
-      >
+    >
       {{ item.task_id }}
     </span>
-    <span class="w-50 overflow-clip text-ellipsis whitespace-nowrap"
-    v-tooltip.top="{
+    <span
+      class="w-50 overflow-clip text-ellipsis whitespace-nowrap"
+      v-tooltip.top="{
         value: item.task_type + ' ' + item.version,
         showDelay: 500,
         hideDelay: 0,
@@ -30,12 +26,10 @@ export default {}
       {{ item.task_type }}
       <sub>{{ item.version }}</sub>
     </span>
-
   </div>
 </template>
 <script lang="ts" setup>
-import type { TrainingTask ,} from '@/libs/apis/models'
-
+import type { TrainingTask } from '@/libs/apis/models'
 
 defineProps<{
   item: TrainingTask
