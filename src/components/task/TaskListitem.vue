@@ -42,16 +42,15 @@ export default {}
 <script lang="ts" setup>
 import vTooltip from 'primevue/tooltip'
 import { ReservedTaskPhases, type TrainingStatus, type TrainingTask } from '@/libs/apis/models'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import ProgressBar from '../ProgressBar.vue'
 import {
   deleteTrainingTaskById,
-  getTrainingStatusById,
   startTrainingTaskById,
   stopTrainingTaskById,
 } from '@/libs/apis/apis'
-import { useIntervalFn } from '@vueuse/core'
 import IconButton from '../IconButton.vue'
+import { useTaskData } from '@/composables/taskData'
 
 const props = defineProps<{
   item: TrainingTask
@@ -61,7 +60,11 @@ const emit = defineEmits<{
   reload: []
 }>()
 
-const status = ref<TrainingStatus>()
+const taskData = useTaskData(props.item.task_id)
+
+const status = computed<TrainingStatus | undefined>(() => {
+  return taskData.getTaskStatus()
+})
 
 enum AllowedOperation {
   NONE = 0,
@@ -100,15 +103,6 @@ const iconDisabled = computed(() => {
   return (allowedOperation.value & (AllowedOperation.STOP | AllowedOperation.START)) === 0
 })
 
-async function loadStatus() {
-  const response = await getTrainingStatusById(props.item.task_id)
-  if (status.value == null) {
-    status.value = response
-  } else {
-    Object.assign(status.value, response)
-  }
-}
-
 async function handleIconClick() {
   if (status.value?.phase == null || iconDisabled.value) return
   if (allowedOperation.value & AllowedOperation.STOP) {
@@ -126,12 +120,4 @@ async function handleDeleteClick() {
   await deleteTrainingTaskById(props.item.task_id)
   emit('reload')
 }
-
-useIntervalFn(
-  async () => {
-    await loadStatus()
-  },
-  2000,
-  { immediate: true },
-)
 </script>

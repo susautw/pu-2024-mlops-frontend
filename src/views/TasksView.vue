@@ -29,7 +29,7 @@
         </div>
         <template v-if="!loading && tasks.length > 0">
           <TaskListitem
-            v-for="task in tasks"
+            v-for="task in filteredTasks"
             :key="task.task_id"
             :item="task"
             @click="handleTaskItemClick(task)"
@@ -41,27 +41,29 @@
   </PageFrame>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import PageFrame from '@/components/PageFrame.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import IconButton from '@/components/IconButton.vue'
 import TaskListitem from '@/components/task/TaskListitem.vue'
-import { getTrainingTasks } from '@/libs/apis/apis'
 import { type TrainingTask } from '@/libs/apis/models'
 import { useRouter } from 'vue-router'
 import { delay } from '@/libs/utils'
+import { useTasks } from '@/composables/taskData'
 
 const router = useRouter()
+const taskData = useTasks()
+
 const tasks = ref<TrainingTask[]>([])
 const loading = ref(true)
 
 async function loadTasks() {
   loading.value = true
   delay(500)
-  const remoteTasks = await getTrainingTasks()
+  await taskData.loadTasks()
   loading.value = false
   delay(500)
-  tasks.value = remoteTasks
+  tasks.value = taskData.tasks.value
 }
 
 function handleTaskItemClick(worker: TrainingTask) {
@@ -73,6 +75,11 @@ onMounted(async () => {
   await loadTasks()
 })
 
-// TODO: Implement search functionality
 const search = ref('')
+const filteredTasks = computed(() => {
+  if (!search.value) {
+    return tasks.value
+  }
+  return tasks.value.filter((task) => task.name.toLowerCase().includes(search.value.toLowerCase()))
+})
 </script>
