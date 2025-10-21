@@ -27,6 +27,10 @@ const props = defineProps<{
   status: TrainingStatus | undefined
 }>()
 
+const emit = defineEmits<{
+  delete: []
+}>()
+
 const { loadTasks } = useTasks()
 
 enum AllowedOperation {
@@ -84,5 +88,6 @@ async function handleDeleteClick() {
   if (props.status == null) return
   await deleteTrainingTaskById(props.status.task_id)
   await loadTasks()
+  emit('delete')
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <PageFrame no-nav>
     <template #actions>
-      <IconButton icon="pi-arrow-left" @click="router.back()" />
+      <IconButton icon="pi-arrow-left" @click="router.push({ name: 'workers' })" />
     </template>
     <template #default>
       <div class="flex flex-col h-full p-4 gap-4">

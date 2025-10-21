@@ -2,7 +2,7 @@
   <PageFrame>
     <template #actions>
       <div class="grow flex gap-2 items-center">
-        <IconButton variant="primary" icon="pi-plus" />
+        <IconButton variant="primary" icon="pi-plus" @click="handleTaskCreate" />
         <IconButton icon="pi-refresh" @click="loadTasks" />
         <div class="grow" />
         <SearchBar
@@ -81,4 +81,8 @@ const filteredTasks = computed(() => {
   }
   return tasks.value.filter((task) => task.name.toLowerCase().includes(search.value.toLowerCase()))
 })
+
+function handleTaskCreate() {
+  router.push({ name: 'task-create' })
+}
 </script>

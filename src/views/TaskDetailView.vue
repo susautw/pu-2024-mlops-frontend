@@ -2,9 +2,13 @@
   <PageFrame no-nav>
     <template #actions>
       <div class="grow flex items-center gap-2 bg-dark/60 p-1 -m-1 rounded-1">
-        <IconButton icon="pi-arrow-left" @click="router.back()" />
+        <IconButton icon="pi-arrow-left" @click="router.push({ name: 'tasks' })" />
         <div class="grow" />
-        <TaskStatusProgress class="max-w-200" :status="status" />
+        <TaskStatusProgress
+          class="max-w-200"
+          :status="status"
+          @delete="router.replace({ name: 'tasks' })"
+        />
       </div>
     </template>
     <template #default>
