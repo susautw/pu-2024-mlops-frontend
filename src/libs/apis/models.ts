@@ -34,3 +34,20 @@ export enum ReservedTaskPhases {
   COMPLETED = 'reserved.completed',
   FAILED = 'reserved.failed',
 }
+
+export function getPhaseName(phase: string | undefined): string {
+  switch (phase) {
+    case ReservedTaskPhases.ASSGINED:
+      return 'Assigned'
+    case ReservedTaskPhases.PAUSED:
+      return 'Paused'
+    case ReservedTaskPhases.CREATED:
+      return 'Created'
+    case ReservedTaskPhases.COMPLETED:
+      return 'Completed'
+    case ReservedTaskPhases.FAILED:
+      return 'Failed'
+    default:
+      return phase ?? 'N/A'
+  }
+}

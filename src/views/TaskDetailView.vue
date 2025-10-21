@@ -1,7 +1,11 @@
 <template>
   <PageFrame no-nav>
     <template #actions>
-      <IconButton icon="pi-arrow-left" @click="router.back()" />
+      <div class="grow flex items-center gap-2 bg-dark/60 p-1 -m-1 rounded-1">
+        <IconButton icon="pi-arrow-left" @click="router.back()" />
+        <div class="grow" />
+        <TaskStatusProgress class="max-w-200" :status="status" />
+      </div>
     </template>
     <template #default>
       <div class="flex flex-col h-full p-4 gap-4">
@@ -29,6 +33,16 @@
               <span class="font-bold w-38">Last Reported At:</span>
               <span>{{ task.created_at.toLocaleString() }}</span>
             </div>
+            <template v-if="status != null">
+              <div class="flex gap-2">
+                <span class="font-bold w-38">Status Phase:</span>
+                <span>{{ phase }}</span>
+              </div>
+              <div class="flex gap-2">
+                <span class="font-bold w-38">Description:</span>
+                <span>{{ status.description }}</span>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -38,7 +52,9 @@
 <script setup lang="ts">
 import IconButton from '@/components/IconButton.vue'
 import PageFrame from '@/components/PageFrame.vue'
+import TaskStatusProgress from '@/components/task/TaskStatusProgress.vue'
 import { useTaskData } from '@/composables/taskData'
+import { getPhaseName } from '@/libs/apis/models'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -48,4 +64,9 @@ const taskData = useTaskData(route.params.id as string)
 const task = computed(() => {
   return taskData.getTask()
 })
+const status = computed(() => {
+  return taskData.getTaskStatus()
+})
+
+const phase = computed(() => getPhaseName(status.value?.phase))
 </script>

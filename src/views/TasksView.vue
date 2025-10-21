@@ -33,7 +33,6 @@
             :key="task.task_id"
             :item="task"
             @click="handleTaskItemClick(task)"
-            @reload="loadTasks()"
           />
         </template>
       </div>

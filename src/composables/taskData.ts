@@ -71,7 +71,7 @@ export function useTaskDataProvider() {
 
     intervalId = setInterval(async () => {
       await loadStatuses()
-    }, 2000)
+    }, 1000)
   })
 
   onUnmounted(() => {
