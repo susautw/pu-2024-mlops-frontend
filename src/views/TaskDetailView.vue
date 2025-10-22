@@ -9,6 +9,12 @@
           :status="status"
           @delete="router.replace({ name: 'tasks' })"
         />
+        <IconButton
+          variant="secondary"
+          icon="pi-download"
+          @click="handleDownload"
+          :disabled="task == null"
+        />
       </div>
     </template>
     <template #default>
@@ -58,6 +64,7 @@ import IconButton from '@/components/IconButton.vue'
 import PageFrame from '@/components/PageFrame.vue'
 import TaskStatusProgress from '@/components/task/TaskStatusProgress.vue'
 import { useTaskData } from '@/composables/taskData'
+import { getTaskDownloadUrl } from '@/libs/apis/apis'
 import { getPhaseName } from '@/libs/apis/models'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -73,4 +80,11 @@ const status = computed(() => {
 })
 
 const phase = computed(() => getPhaseName(status.value?.phase))
+
+function handleDownload() {
+  if (task.value == null) return
+  const anchor = document.createElement('a')
+  anchor.href = getTaskDownloadUrl(task.value?.task_id)
+  anchor.click()
+}
 </script>
